@@ -1,19 +1,27 @@
 import React from 'react';
-import './mainComponent.less'
+import './MainComponent.less';
 import PropTypes from 'prop-types';
+import Chat from "../chat/index";
 
 export default class MainComponent extends React.Component {
-    static PropTypes = {
+    static propTypes = {
         modules: PropTypes.object.isRequired,
-        activeBlock: PropTypes.object.isRequired
+        activeBlocks: PropTypes.object.isRequired,
     };
 
     render() {
-        console.log('MAin');
-        return(
-            <div>
-                <h1>REDUX</h1>
+        return (
+            <div className='page-wrapper'>
+                <header className='page-wrapper__header'>
+
+                </header>
+                <main className='page-wrapper__main'>
+                    <Chat/>
+                </main>
+                <footer className='page-wrapper__footer'>
+
+                </footer>
             </div>
-        )
+        );
     }
 }

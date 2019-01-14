@@ -1,2 +1,2 @@
-export const getConfigModules = state => state.modules;
-export const getConfigActiveBlocks = state => state.activeBlocks;
+export const getConfigModules = state => state.config.modules;
+export const getConfigActiveModules = state => state.config.activeBlocks;

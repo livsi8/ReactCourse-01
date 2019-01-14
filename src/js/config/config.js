@@ -1,12 +1,12 @@
 export default {
     activeBlocks: {
-      chat: true
+        chat: true,
     },
     modules: {
-        header: {
+        chat: {
             isActive: true,
         },
-        chat: {
+        header: {
             isActive: true,
         },
         footer: {

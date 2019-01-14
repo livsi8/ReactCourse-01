@@ -116,15 +116,9 @@ module.exports = (env, options) => {
             new MiniCssExtractPlugin({
                 filename: '[name].[hash:8].css',
             }),
-            // new HtmlWebpackPlugin({
-            //     filename: 'login.html',
-            //     template: 'public/login.html',
-            //     excludeChunks: ['index']
-            // }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
                 template: 'public/index.html',
-                // excludeChunks: ['login']
             }),
             ...(development ? [
                 new webpack.HotModuleReplacementPlugin(),
