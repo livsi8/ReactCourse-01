@@ -35,6 +35,9 @@ const usersReducer = (state = usersInitialState, action) => {
                 action.payload
             ]
         }
+        case constants.SELECTED_USER: {
+            return state
+        }
         default:
             return state;
     }

@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     addNewMessage: payload => dispatch(actions.addNewMessage(payload)),
-    addNewUser: () => dispatch(actions.addNewUser())
+    addNewUser: () => dispatch(actions.addNewUser()),
+    selectUser: (name) => dispatch(actions.selectUser(name))
 });
 
 export default connect(

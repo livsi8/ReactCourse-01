@@ -15,6 +15,7 @@ export default class Chat extends React.Component {
                 <Users
                     users={this.props.users}
                     addNewUser={this.props.addNewUser}
+                    selectUser={this.props.selectUser}
                 />
             </div>
         );
