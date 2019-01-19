@@ -1,7 +1,10 @@
 import constants from "../../constants/constants";
 import faker from 'faker';
 export const addNewUser = () => {
-    const payload = `@${faker.internet.userName().toLocaleLowerCase()}`;
+    const payload = {
+        isSelected: false,
+        name: `@${faker.internet.userName().toLocaleLowerCase()}`,
+    };
 
     return dispatch => {
         dispatch({
@@ -10,7 +13,7 @@ export const addNewUser = () => {
         });
         dispatch(addNewMessage({
             text: "HELLO EVERYBODY",
-            author: payload,
+            author: payload.name,
             datetime: new Date().getTime(),
         }))
     }

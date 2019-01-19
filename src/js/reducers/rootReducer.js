@@ -2,7 +2,18 @@ import config from '../config/config';
 import { combineReducers } from "redux";
 import constants from '../constants/constants';
 
-const usersInitialState = ['@john_123', '@alex_123', '@fred_678'];
+const usersInitialState = [
+    {
+        isActive: true,
+        name: '@john_123',
+    },{
+        isActive: false,
+        name: '@alex_123',
+    },{
+        isActive: false,
+        name: '@fred_678',
+    },
+];
 
 const messageInitialState = [
     {

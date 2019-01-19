@@ -7,7 +7,7 @@ export default class Users extends React.Component {
                 <h3 className="users__title">Users Online:</h3>
                 <ul>
                     {this.props.users.map(user => {
-                        return <li key={user}>{user}</li>
+                        return <li className={user.isActive ? 'users__active' : ''} key={user.name}>{user.name} </li>
                     })}
                 </ul>
                 <button onClick={this.props.addNewUser}>ADD</button>
