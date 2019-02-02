@@ -1,10 +1,10 @@
 export default {
     resources: {
-        hello: 'Hello',
-        world: 'World'
+        hello: 'Привет',
+        world: 'Мир'
     },
     dialogResources: {
-        helloWorld: 'Hello world'
+
     },
     errorCode: {
 

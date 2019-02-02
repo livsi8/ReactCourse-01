@@ -1,9 +1,11 @@
 @headerHeight: 80px;
 @footerHeight: 100px;
+
 body {
   margin: 0;
   padding: 0;
 }
+
 .page-wrapper {
   height: 100vh;
   display: flex;
@@ -14,13 +16,11 @@ body {
     display: flex;
     background-color: green;
   }
-
   &__main {
     display: flex;
     flex: 1;
     overflow: auto;
   }
-
   &__footer {
     height: @footerHeight;
     display: flex;

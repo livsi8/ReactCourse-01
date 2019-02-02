@@ -1,32 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MainComponent from './js/modules/maincomponent/index';
+import MainComponent from './js/modules/mainComponent/index';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './js/reducers/rootReducer';
-import reduxThunk from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './js/rootSaga/rootSaga';
 
-// const myCustomMiddleWare = store => {
-//     return function (next) {
-//         return function(action) {
-//             console.log('trigger', action);
-//             const result = next(action);
-//             console.log('store after changing', store.getState());
-//             return next(action);
-//         }
-//     }
-// }
-
-const store = createStore (
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
     rootReducer,
-    applyMiddleware(reduxThunk)
-    // applyMiddleware(myCustomMiddleWare)
+    applyMiddleware(sagaMiddleware)
 );
+sagaMiddleware.run(rootSaga);
 
 window.store = store;
+const container = document.getElementById('root');
 ReactDOM.render(
-    <Provider store={store}>
+    <Provider store = {store}>
         <MainComponent/>
     </Provider>,
-    document.getElementById('root')
+    container
 );

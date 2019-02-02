@@ -4,7 +4,7 @@ export default {
         world: 'World'
     },
     dialogResources: {
-        helloWorld: 'Hello world'
+
     },
     errorCode: {
 

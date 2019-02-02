@@ -5,16 +5,19 @@ export default class Messages extends React.Component {
 
     submitForm = event => {
         event.preventDefault();
+        let currentUser = null;
+        this.props.users.map(user => {if (user.isSelected) currentUser =  user.name});
         this.props.addNewMessage({
             text: this.node.value,
-            author: 'uknown',
+            author: currentUser,
             datetime: new Date().getTime()
-        })
+        });
 
-    }
+        this.node.value = ''
+    };
 
     render() {
-        return (
+        return(
             <div className='main-wrapper__chat chat'>
                 <form onSubmit={this.submitForm} action="#">
                     {this.props.messages.map(message =>
@@ -27,6 +30,6 @@ export default class Messages extends React.Component {
                     <input ref={node => this.node = node} type="text" className="chat__input"/>
                 </form>
             </div>
-        );
+        )
     }
 }

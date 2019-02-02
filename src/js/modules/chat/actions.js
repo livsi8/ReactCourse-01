@@ -1,18 +1,8 @@
 import constants from "../../constants/constants";
-import faker from 'faker';
-export const addNewUser = () => {
-    const payload = `@${faker.internet.userName().toLocaleLowerCase()}`;
 
-    return dispatch => {
-        dispatch({
+export const addNewUser = () => {
+    return {
         type: constants.ADD_NEW_USER,
-        payload
-        });
-        dispatch(addNewMessage({
-            text: "HELLO EVERYBODY",
-            author: payload,
-            datetime: new Date().getTime(),
-        }))
     }
 };
 
@@ -21,4 +11,11 @@ export const addNewMessage = payload => {
         type: constants.ADD_NEW_MESSAGE,
         payload
     }
-}
+};
+
+export const changeStateSelectedUser = payload => {
+    return {
+        type: constants.CHANGE_STATE_SELECTED_USER,
+        payload
+    }
+};

@@ -15,8 +15,7 @@ module.exports = (env, options) => {
     const config = {
         mode: development ? 'development' : 'production',
         entry: {
-            index: ['@babel/polyfill', './src/index.js'],
-            // login: './src/login/login.js',
+            index: ['@babel/polyfill', './src/index.js']
         },
         output: {
             path: path.resolve(__dirname, './dist'),
@@ -118,7 +117,7 @@ module.exports = (env, options) => {
             }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
-                template: 'public/index.html',
+                template: 'public/index.html'
             }),
             ...(development ? [
                 new webpack.HotModuleReplacementPlugin(),
