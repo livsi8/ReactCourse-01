@@ -6,11 +6,15 @@ import './sidebar.less';
 
 export default class Sidebar extends PureComponent {
 
+    toggleChat = ()=> {
+        console.log('btn-toggle-chat')
+    }
+
     render() {
         return(
             <div className='sidebar sidebar-wrapper'>
                 <div className="sidebar__toggle-chat">
-                    <button className='sidebar__btn-toggle-chat' onClick={console.log('btn-toggle-chat')}>Toggle chat</button>
+                    <button className='sidebar__btn-toggle-chat' onClick={this.toggleChat}>Toggle chat</button>
                 </div>
             </div>
         )
