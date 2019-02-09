@@ -1,23 +1,26 @@
 import React from 'react';
+import { UssersWrapper, UsersTitle, UsersLi, UsersUl } from '../../styled';
 
 export default class Users extends React.Component {
 
+    changeUser = (e) => {
+        this.props.addCurrentUser(
+            e.currentTarget.innerHTML
+        );
+    };
 
     render() {
-        return(
-            <div className="main-wrapper__users users">
-                <h3 className="users__title">Users Online:</h3>
-                <ul>
+        return (
+            <UssersWrapper>
+                <UsersTitle>{this.props.translations.usersOnline}</UsersTitle>
+                <UsersUl>
                     {this.props.users.map(user => {
-                        return <li key={user.name}
-                                   style={{fontWeight: user.isSelected ? 'bold' : 'normal', cursor: 'pointer'}}
-                                   onClick={() => this.props.changeStateSelectedUser(user.name)}
-                            >{user.name}
-                            </li>
+                        const color = user === this.props.currentUser ? 'red' : 'blue';
+                        const fontWeight = user === this.props.currentUser ? 'bold' : 'normal';
+                        return <UsersLi color={color} fontWeight={fontWeight} onClick={this.changeUser} key={user}>{user}</UsersLi>
                     })}
-                </ul>
-                <button onClick={this.props.addNewUser}>ADD</button>
-            </div>
-        )
+                </UsersUl>
+            </UssersWrapper>
+        );
     }
 }

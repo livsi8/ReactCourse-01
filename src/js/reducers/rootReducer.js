@@ -1,33 +1,80 @@
 import config from '../config/config';
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 import constants from '../constants/constants';
-import lang from '../languages/english/en'
-// import lang from '../languages/russian/ru'
+import { ru } from '../languages/russian/rus'
 
-const usersInitialState = [
-    {name: '@john_123', isSelected: true},
-    {name: '@alex_123', isSelected: false},
-    {name: '@fred_123', isSelected: false},
-];
+const usersInitialState = ['Admin', 'Max', 'Stas', 'Rodion', 'Valera', 'Petr'];
+
+const currentUser = 'Admin';
+
+const messageInitialState = [
+    {
+        text: "hello everyone",
+        author: 'Max',
+        datetime: 1547304615302
+    },
+    {
+        text: "Hi Max",
+        author: 'Stas',
+        datetime: 1547303615303
+    }
+]
 
 const usersReducer = (state = usersInitialState, action) => {
     switch(action.type) {
-        case constants.ADD_NEW_USER_STORE:
+        case constants.ADD_NEW_USER: {
             return [
                 ...state,
                 action.payload
-            ];
-        case constants.CHANGE_STATE_SELECTED_USER:
-            return state.map(user => {
-                if (user.name === action.payload) {
-                    return {name:user.name, isSelected: true}
-                }
-                return {name:user.name, isSelected: false}
-                });
-
-        default: {
-            return state;
+            ]
         }
+        case constants.DELETE_USER: {
+            return state.filter(val => val !== action.payload);
+        }
+        case constants.DELETE_ALL_USERS_STORE: {
+            return ['Admin']
+        }
+        case constants.EDIT_USER_SAGA: {
+            return state = action.payload;
+        }
+        default:
+            return state;
+    }
+};
+
+const currentUserReducer = (state = currentUser, action) => {
+    switch(action.type) {
+        case constants.ADD_CURRENT_USER: {
+            return state = action.payload;
+        }
+        case constants.DELETE_ALL_USERS_STORE: {
+            return state = 'Admin';
+        }
+        default:
+            return state;
+    }
+};
+
+const messagesReducer = (state = messageInitialState, action) => {
+    switch(action.type) {
+        case constants.ADD_NEW_MESSAGE: {
+            return [
+                ...state,
+                action.payload
+            ]
+        }
+        default:
+            return state;
+    }
+};
+
+const languageReducer = (state = ru, action) => {
+    switch(action.type) {
+        case constants.CHANGE_LANGUAGE_SAGA: {
+            return state = action.payload
+        }
+        default:
+            return state;
     }
 };
 
@@ -42,55 +89,24 @@ const configReducer = (state = config, action) => {
                 }
             }
         }
-        default: {
-            return state;
-        }
-    }
-};
-
-const languageReducer = (state = lang, action) => {
-    switch(action.type) {
-        case constants.CHANGE_LANGUAGE: {
+        case constants.CHANGE_CURRENT_LANGUAGE_STORE: {
             return {
-                ...action.payload
+                ...state,
+                platformLanguage: {
+                    ...state.platformLanguage,
+                    currentLanguage: action.payload,
+                },
             }
         }
-        default: {
+        default:
             return state;
-        }
     }
-};
-
-const messagesInitialState = [
-    {
-        text: 'Hello everyone',
-        author: '@john_123',
-        datetime: 1547303615302
-    },
-    {
-        text: 'Hi John',
-        author: '@john_123',
-        datetime: 1547303615303
-    }
-];
-
-const messagesReducer = (state = messagesInitialState, action) => {
-    switch(action.type) {
-        case constants.ADD_NEW_MESSAGE: {
-            return [
-                ...state,
-                action.payload
-            ];
-        }
-        default: {
-            return state;
-        }
-    }
-};
+}
 
 export default combineReducers({
     users: usersReducer,
     config: configReducer,
-    strings: languageReducer,
-    messages: messagesReducer
+    messages: messagesReducer,
+    currentUser: currentUserReducer,
+    language: languageReducer
 })

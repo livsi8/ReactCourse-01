@@ -15,15 +15,18 @@ module.exports = (env, options) => {
     const config = {
         mode: development ? 'development' : 'production',
         entry: {
-            index: ['@babel/polyfill', './src/index.js']
+            index: ['@babel/polyfill', './src/index.js'],
+            // login: './src/login/login.js',
         },
         output: {
             path: path.resolve(__dirname, './dist'),
             filename: '[name].[hash:8].js',
+            publicPath: '/'
         },
         devServer: {
             // index: 'login.html',
-            overlay: true
+            overlay: true,
+            historyApiFallback: true
         },
         resolve: {
             alias: {
@@ -117,7 +120,7 @@ module.exports = (env, options) => {
             }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
-                template: 'public/index.html'
+                template: 'public/index.html',
             }),
             ...(development ? [
                 new webpack.HotModuleReplacementPlugin(),

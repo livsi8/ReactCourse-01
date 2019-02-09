@@ -11,6 +11,10 @@ export default {
         },
         footer: {
             isActive: true,
-        }
-    }
+        },
+    },
+    platformLanguage: {
+        languages: ['en', 'ru'],
+        currentLanguage: 'ru',
+    },
 }

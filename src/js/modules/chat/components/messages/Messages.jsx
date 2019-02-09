@@ -1,35 +1,34 @@
 import React from 'react';
 import moment from 'moment';
+import { ChatWraper, ChatUser, ChatInput, ChatMeseges, MessageDate, MessageAutor } from '../../styled';
 
 export default class Messages extends React.Component {
 
     submitForm = event => {
         event.preventDefault();
-        let currentUser = null;
-        this.props.users.map(user => {if (user.isSelected) currentUser =  user.name});
         this.props.addNewMessage({
             text: this.node.value,
-            author: currentUser,
+            author: this.props.currentUser,
             datetime: new Date().getTime()
         });
-
-        this.node.value = ''
+        this.node.value = '';
     };
 
     render() {
-        return(
-            <div className='main-wrapper__chat chat'>
+        return (
+            <ChatWraper>
+                <ChatUser>{this.props.currentUser}</ChatUser>
                 <form onSubmit={this.submitForm} action="#">
-                    {this.props.messages.map(message =>
-                        <div key={message.datetime} className='chat__message message'>
-                            <span className='message__date'>{moment(message.datetime).format('DD:MM:YYYY hh:mm')}</span>
-                            <span className='message__author'>{message.author}</span>
+                    {this.props.messages.map((message,i) =>
+                        <ChatMeseges key={i}>
+                            <MessageDate>{moment(message.datetime).format('DD:MM:YYYY hh:mm')}</MessageDate>
+                            <MessageAutor>{message.author}</MessageAutor>
                             <span>{message.text}</span>
-                        </div>
+                        </ChatMeseges>
                     )}
-                    <input ref={node => this.node = node} type="text" className="chat__input"/>
+                    <ChatInput ref={node => this.node = node} type="text"/>
                 </form>
-            </div>
-        )
+            </ChatWraper>
+        );
     }
 }
